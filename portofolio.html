@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Doe — AI Research & Engineering</title>
-  <meta name="description" content="Personal portfolio and research notes of Alex Doe, focusing on foundation models, inference optimization, and autonomous systems." />
+  <title>Alex Doe — AI Research & Systems Engineering</title>
+  <meta name="description" content="Personal portfolio and research work of Alex Doe, focusing on foundation model efficiency, speculative inference, and autonomous agent systems." />
 
-  <!-- Fonts: Inter & JetBrains Mono -->
+  <!-- Typography: Space Grotesk (Headings) + Inter (Body) + JetBrains Mono (Code/Metadata) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,13 +20,19 @@
         extend: {
           fontFamily: {
             sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif'],
             mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
           },
           colors: {
-            neutral: {
-              850: '#171b22',
-              900: '#0d1117',
-              950: '#080b0f',
+            zinc: {
+              850: '#1e1e22',
+              900: '#18181b',
+              950: '#09090b',
+            },
+            accent: {
+              DEFAULT: '#3b82f6',
+              hover: '#2563eb',
+              subtle: 'rgba(59, 130, 246, 0.1)',
             }
           }
         }
@@ -35,121 +41,174 @@
   </script>
 
   <style>
-    /* Clean typography & unobtrusive focus styles */
+    /* UI-UX Pro Max Design System Tokens & Base Rules */
+    :root {
+      --bg-base: #09090b;
+      --surface: #18181b;
+      --border-subtle: #27272a;
+      --border-hover: #3f3f46;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+    }
+
     body {
-      color: #c9d1d9;
-      background-color: #0d1117;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
       line-height: 1.65;
+      font-size: 16px; /* Touch & readability baseline */
     }
-    a {
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+
+    /* WCAG AA Focus Ring Standards */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
     }
-    ::selection {
-      background: #238636;
-      color: #ffffff;
+
+    /* Motion Accessibility: Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Touch target comfort */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col font-sans antialiased text-slate-300 bg-[#0d1117]">
+<body class="min-h-screen flex flex-col font-sans antialiased text-zinc-300 bg-zinc-950">
 
-  <!-- Accessibility Skip Link -->
-  <a href="#content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-slate-100 focus:text-slate-900 focus:rounded-md focus:text-sm font-medium shadow-md">
+  <!-- A11y Skip to Main Content (WCAG 2.1 AA) -->
+  <a href="#content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-950 focus:font-semibold focus:rounded-md focus:shadow-lg focus:text-sm">
     Skip to main content
   </a>
 
-  <!-- TOP NAVIGATION / HEADER -->
-  <header class="border-b border-[#21262d] sticky top-0 z-30 bg-[#0d1117]/90 backdrop-blur-sm">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-      <a href="#" class="text-sm font-semibold tracking-tight text-slate-200 hover:text-white transition">
-        alex doe
+  <!-- NAVIGATION HEADER -->
+  <header class="border-b border-zinc-800/80 sticky top-0 z-30 bg-zinc-950/90 backdrop-blur-md transition-colors">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-heading font-bold text-base tracking-tight text-zinc-100 hover:text-accent transition duration-150 flex items-center gap-2">
+        <span>Alex Doe</span>
+        <span class="text-xs font-mono font-normal text-zinc-500 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded">AI / ML</span>
       </a>
-      <nav class="flex items-center gap-5 text-xs sm:text-sm text-slate-400 font-medium">
-        <a href="#about" class="hover:text-slate-200 transition">About</a>
-        <a href="#research" class="hover:text-slate-200 transition">Research</a>
-        <a href="#projects" class="hover:text-slate-200 transition">Projects</a>
-        <a href="#writing" class="hover:text-slate-200 transition">Writing</a>
-        <a href="#contact" class="hover:text-slate-200 transition">Contact</a>
+
+      <!-- Navigation Links (touch-friendly padding) -->
+      <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium text-zinc-400" aria-label="Main Navigation">
+        <a href="#about" class="px-2.5 py-2 rounded-md hover:text-zinc-100 hover:bg-zinc-900/60 transition">About</a>
+        <a href="#research" class="px-2.5 py-2 rounded-md hover:text-zinc-100 hover:bg-zinc-900/60 transition">Research</a>
+        <a href="#systems" class="px-2.5 py-2 rounded-md hover:text-zinc-100 hover:bg-zinc-900/60 transition">Systems</a>
+        <a href="#writing" class="px-2.5 py-2 rounded-md hover:text-zinc-100 hover:bg-zinc-900/60 transition">Writing</a>
+        <a href="#contact" class="px-2.5 py-2 rounded-md hover:text-zinc-100 hover:bg-zinc-900/60 transition">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN CONTENT CONTAINER -->
   <main id="content" class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full space-y-16">
 
-    <!-- INTRO / BIO SECTION -->
+    <!-- INTRO & BIO -->
     <section id="about" class="space-y-6">
-      <div class="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-6">
-        <div>
-          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
+      <div class="flex flex-col-reverse sm:flex-row sm:items-start justify-between gap-6">
+        <div class="space-y-2">
+          <h1 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
             Alex Doe
           </h1>
-          <p class="text-sm font-mono text-slate-400 mt-1">
+          <p class="text-sm font-mono text-zinc-400">
             AI Research Engineer &bull; San Francisco, CA
           </p>
         </div>
         
-        <!-- Subtle Avatar / Portrait Placeholder -->
-        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#161b22] border border-[#30363d] flex items-center justify-center text-slate-400 font-mono text-xl font-medium shrink-0">
+        <!-- Profile Identity Badge -->
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 font-mono text-lg font-semibold shrink-0 select-none shadow-sm">
           AD
         </div>
       </div>
 
-      <div class="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+      <!-- Concise Research Statement -->
+      <div class="space-y-4 text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl">
         <p>
-          I work on the systems and theory behind large-scale machine learning models. My core focus is on 
-          <strong>efficient inference architectures</strong>, <strong>autonomous agent evaluation</strong>, and 
-          <strong>multimodal representation learning</strong>.
+          I design and benchmark architectures for large foundation models. My research sits at the intersection of 
+          <strong class="text-zinc-100 font-medium">inference efficiency</strong> (quantization, speculative decoding, memory paging), 
+          <strong class="text-zinc-100 font-medium">autonomous agent evaluation</strong>, and 
+          <strong class="text-zinc-100 font-medium">multimodal alignment</strong>.
         </p>
-        <p class="text-slate-400">
-          Previously, I spent time building low-latency model-serving kernels, fine-tuning reasoning models on domain-specific corpora, and contributing to open-source foundation model tooling. I hold an M.S. in Computer Science with a focus on Deep Learning.
+        <p class="text-zinc-400 text-sm">
+          Currently exploring low-overhead KV-cache streaming for multi-agent coordination. Previously developed high-throughput serving pipelines for distributed GPU clusters. M.S. in Computer Science with a specialization in Machine Learning.
         </p>
       </div>
 
-      <!-- Compact Social & Academic Links -->
-      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-mono text-slate-400 pt-2 border-t border-[#21262d]">
-        <a href="mailto:alex.doe.ai@example.com" class="hover:text-slate-200 transition underline">Email</a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 transition underline">GitHub</a>
-        <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 transition underline">Google Scholar</a>
-        <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 transition underline">Hugging Face</a>
-        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 transition underline">X (Twitter)</a>
-        <a href="#contact" class="hover:text-slate-200 transition underline">CV / Resume (PDF)</a>
+      <!-- Verified Links (Structured Touch-Friendly Toolbar) -->
+      <div class="pt-3 border-t border-zinc-800/80 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-mono text-zinc-400">
+        <a href="mailto:alex.doe.ai@example.com" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition">
+          <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition">
+          <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition">
+          <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4 3.18v6.75h2v-5.16L12 19l12-9.5z"/></svg>
+          <span>Scholar</span>
+        </a>
+        <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition font-bold text-xs">
+          <span>HF</span>
+        </a>
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:text-zinc-100 transition">
+          <span>X / Twitter</span>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent/10 text-accent border border-accent/30 hover:bg-accent/20 transition">
+          <span>CV (PDF) &darr;</span>
+        </a>
       </div>
     </section>
 
     <!-- RESEARCH & PUBLICATIONS SECTION -->
-    <section id="research" class="space-y-6 pt-4 border-t border-[#21262d]">
+    <section id="research" class="space-y-6 pt-6 border-t border-zinc-800/80">
       <div class="flex items-baseline justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold text-slate-100 tracking-tight">
-          Selected Research & Preprints
-        </h2>
-        <span class="text-xs font-mono text-slate-500">2023 &ndash; Present</span>
+        <div>
+          <h2 class="font-heading text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+            Research & Preprints
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">Peer-reviewed publications, preprints, and workshop papers</p>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">2023 &ndash; Present</span>
       </div>
 
       <div class="space-y-6">
         
         <!-- Paper 1 -->
-        <article class="space-y-2 text-sm">
+        <article class="p-4 sm:p-5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition duration-200 space-y-2.5">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#161b22] text-slate-300 border border-[#30363d]">NeurIPS 2024 Workshop</span>
-            <span class="text-xs font-mono text-slate-500">arXiv:2410.12345</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-800 text-zinc-200 border border-zinc-700/80">NeurIPS 2024 Workshop</span>
+            <span class="text-xs font-mono text-zinc-500">arXiv:2410.12345</span>
           </div>
-          <h3 class="font-medium text-slate-100 leading-snug">
-            <a href="#" class="hover:underline">Streaming Latent-State Communication for Multi-Agent Systems</a>
+          <h3 class="font-heading text-base font-semibold text-zinc-100 leading-snug">
+            <a href="#" class="hover:text-accent transition">Streaming Latent-State Communication for Multi-Agent Systems</a>
           </h3>
-          <p class="text-xs font-mono text-slate-400">
-            <strong>Alex Doe</strong>, Jane Smith, Robert Taylor
+          <p class="text-xs font-mono text-zinc-400">
+            <strong class="text-zinc-200">Alex Doe</strong>, Jane Smith, Robert Taylor
           </p>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
             Investigated token efficiency in inter-agent communication graphs. Proposed an asynchronous KV-cache streaming protocol that achieves 42% reduction in memory overhead while preserving reasoning fidelity on multi-hop benchmarks.
           </p>
-          <div class="flex items-center gap-3 text-xs font-mono text-slate-400 pt-1">
-            <a href="#" class="hover:text-slate-200 underline">[Paper PDF]</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">[Code]</a>
-            <button type="button" class="hover:text-slate-200 underline bibtex-toggle" data-target="bib-1">[BibTeX]</button>
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400 pt-1">
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">[Paper PDF]</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">[Code]</a>
+            <button type="button" class="hover:text-zinc-100 underline decoration-zinc-600 bibtex-toggle" data-target="bib-1">[BibTeX]</button>
           </div>
-          <div id="bib-1" class="hidden mt-2 p-3 bg-[#161b22] rounded border border-[#30363d] font-mono text-[11px] text-slate-400 overflow-x-auto">
+          <div id="bib-1" class="hidden mt-2 p-3 bg-zinc-950 rounded-lg border border-zinc-800 font-mono text-[11px] text-zinc-400 overflow-x-auto select-all">
 @article{doe2024streaming,
   title={Streaming Latent-State Communication for Multi-Agent Systems},
   author={Doe, Alex and Smith, Jane and Taylor, Robert},
@@ -159,26 +218,26 @@
         </article>
 
         <!-- Paper 2 -->
-        <article class="space-y-2 text-sm pt-4 border-t border-[#1c2128]">
+        <article class="p-4 sm:p-5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition duration-200 space-y-2.5">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#161b22] text-slate-300 border border-[#30363d]">ICML 2024</span>
-            <span class="text-xs font-mono text-slate-500">arXiv:2405.67890</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-800 text-zinc-200 border border-zinc-700/80">ICML 2024</span>
+            <span class="text-xs font-mono text-zinc-500">arXiv:2405.67890</span>
           </div>
-          <h3 class="font-medium text-slate-100 leading-snug">
-            <a href="#" class="hover:underline">Empirical Bounds on Post-Training Quantization for Speculative Decoding</a>
+          <h3 class="font-heading text-base font-semibold text-zinc-100 leading-snug">
+            <a href="#" class="hover:text-accent transition">Empirical Bounds on Post-Training Quantization for Speculative Decoding</a>
           </h3>
-          <p class="text-xs font-mono text-slate-400">
-            <strong>Alex Doe</strong>, Sarah Vance
+          <p class="text-xs font-mono text-zinc-400">
+            <strong class="text-zinc-200">Alex Doe</strong>, Sarah Vance
           </p>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
             Analyzed degradation factors in draft model acceptance rates under INT4/FP8 weight-only quantization. Developed a mixed-precision heuristic that stabilizes acceptance across high-temperature distributions.
           </p>
-          <div class="flex items-center gap-3 text-xs font-mono text-slate-400 pt-1">
-            <a href="#" class="hover:text-slate-200 underline">[Paper PDF]</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">[Code]</a>
-            <button type="button" class="hover:text-slate-200 underline bibtex-toggle" data-target="bib-2">[BibTeX]</button>
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400 pt-1">
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">[Paper PDF]</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">[Code]</a>
+            <button type="button" class="hover:text-zinc-100 underline decoration-zinc-600 bibtex-toggle" data-target="bib-2">[BibTeX]</button>
           </div>
-          <div id="bib-2" class="hidden mt-2 p-3 bg-[#161b22] rounded border border-[#30363d] font-mono text-[11px] text-slate-400 overflow-x-auto">
+          <div id="bib-2" class="hidden mt-2 p-3 bg-zinc-950 rounded-lg border border-zinc-800 font-mono text-[11px] text-zinc-400 overflow-x-auto select-all">
 @article{doe2024empirical,
   title={Empirical Bounds on Post-Training Quantization for Speculative Decoding},
   author={Doe, Alex and Vance, Sarah},
@@ -188,26 +247,26 @@
         </article>
 
         <!-- Paper 3 -->
-        <article class="space-y-2 text-sm pt-4 border-t border-[#1c2128]">
+        <article class="p-4 sm:p-5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition duration-200 space-y-2.5">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#161b22] text-slate-300 border border-[#30363d]">Preprint</span>
-            <span class="text-xs font-mono text-slate-500">arXiv:2401.11223</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-800 text-zinc-200 border border-zinc-700/80">Preprint</span>
+            <span class="text-xs font-mono text-zinc-500">arXiv:2401.11223</span>
           </div>
-          <h3 class="font-medium text-slate-100 leading-snug">
-            <a href="#" class="hover:underline">Evaluation of Multimodal Grounding in Long-Context Retrieval</a>
+          <h3 class="font-heading text-base font-semibold text-zinc-100 leading-snug">
+            <a href="#" class="hover:text-accent transition">Evaluation of Multimodal Grounding in Long-Context Retrieval</a>
           </h3>
-          <p class="text-xs font-mono text-slate-400">
-            Michael Lin, <strong>Alex Doe</strong>, Kevin Zhang
+          <p class="text-xs font-mono text-zinc-400">
+            Michael Lin, <strong class="text-zinc-200">Alex Doe</strong>, Kevin Zhang
           </p>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
             Constructed a benchmark dataset measuring factual needle-in-a-haystack recall across interleaved image-document sequences. Evaluated frontier open-weights vision-language models against proprietary APIs.
           </p>
-          <div class="flex items-center gap-3 text-xs font-mono text-slate-400 pt-1">
-            <a href="#" class="hover:text-slate-200 underline">[Paper PDF]</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">[Dataset]</a>
-            <button type="button" class="hover:text-slate-200 underline bibtex-toggle" data-target="bib-3">[BibTeX]</button>
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400 pt-1">
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">[Paper PDF]</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">[Dataset]</a>
+            <button type="button" class="hover:text-zinc-100 underline decoration-zinc-600 bibtex-toggle" data-target="bib-3">[BibTeX]</button>
           </div>
-          <div id="bib-3" class="hidden mt-2 p-3 bg-[#161b22] rounded border border-[#30363d] font-mono text-[11px] text-slate-400 overflow-x-auto">
+          <div id="bib-3" class="hidden mt-2 p-3 bg-zinc-950 rounded-lg border border-zinc-800 font-mono text-[11px] text-zinc-400 overflow-x-auto select-all">
 @article{lin2024multimodal,
   title={Evaluation of Multimodal Grounding in Long-Context Retrieval},
   author={Lin, Michael and Doe, Alex and Zhang, Kevin},
@@ -219,153 +278,189 @@
       </div>
     </section>
 
-    <!-- SYSTEMS & OPEN SOURCE PROJECTS -->
-    <section id="projects" class="space-y-6 pt-4 border-t border-[#21262d]">
+    <!-- SYSTEMS & OPEN SOURCE (Bento-style Minimalist Grid) -->
+    <section id="systems" class="space-y-6 pt-6 border-t border-zinc-800/80">
       <div class="flex items-baseline justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold text-slate-100 tracking-tight">
-          Systems & Open Source
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Code & Tools</span>
+        <div>
+          <h2 class="font-heading text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+            Systems & Open Source
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">High-performance kernels, observability tools, and inference runtimes</p>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">Repositories</span>
       </div>
 
-      <div class="space-y-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         
-        <!-- Project 1 -->
-        <div class="p-4 rounded-lg bg-[#161b22]/70 border border-[#30363d] space-y-2">
-          <div class="flex items-center justify-between">
-            <h3 class="font-medium text-slate-100 text-sm sm:text-base">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                torch-specinfer
-              </a>
-            </h3>
-            <span class="text-xs font-mono text-slate-500">PyTorch &bull; CUDA</span>
+        <!-- System 1 -->
+        <div class="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition duration-150 flex flex-col justify-between space-y-3">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-heading font-semibold text-zinc-100 text-sm sm:text-base">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+                  torch-specinfer
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono text-zinc-400 bg-zinc-800/90 px-2 py-0.5 rounded">C++ / CUDA</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              A minimalist CUDA extension for tree-based speculative verification in PyTorch. Provides a 2.4x wall-clock speedup for single-stream execution.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">
-            A minimalist C++/CUDA extension for tree-based speculative verification in PyTorch. Provides a 2.4x wall-clock speedup for small batch sizes without needing complex Triton server configurations.
-          </p>
-          <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">GitHub &rarr;</a>
-            <a href="#" class="hover:text-slate-200 underline">Benchmarks</a>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="p-4 rounded-lg bg-[#161b22]/70 border border-[#30363d] space-y-2">
-          <div class="flex items-center justify-between">
-            <h3 class="font-medium text-slate-100 text-sm sm:text-base">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                agent-trace-eval
-              </a>
-            </h3>
-            <span class="text-xs font-mono text-slate-500">Python &bull; OpenTelemetry</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-400">
-            Lightweight deterministic trajectory logger for multi-agent workflows. Captures intermediate tool calls, state drift, and token consumption with zero external observability overhead.
-          </p>
-          <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">GitHub &rarr;</a>
-            <a href="#" class="hover:text-slate-200 underline">Documentation</a>
+          <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 pt-2 border-t border-zinc-800/60">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">GitHub &rarr;</a>
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">Benchmarks</a>
           </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="p-4 rounded-lg bg-[#161b22]/70 border border-[#30363d] space-y-2">
-          <div class="flex items-center justify-between">
-            <h3 class="font-medium text-slate-100 text-sm sm:text-base">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                fast-embedding-rerank
-              </a>
-            </h3>
-            <span class="text-xs font-mono text-slate-500">Rust &bull; ONNX Runtime</span>
+        <!-- System 2 -->
+        <div class="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition duration-150 flex flex-col justify-between space-y-3">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-heading font-semibold text-zinc-100 text-sm sm:text-base">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+                  agent-trace-eval
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono text-zinc-400 bg-zinc-800/90 px-2 py-0.5 rounded">Python / OTel</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Deterministic trajectory recorder for multi-agent graph workflows. Measures token drift and tool failure rates with sub-millisecond overhead.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">
-            Embedded zero-copy cross-encoder inference binary built for high-concurrency search pipelines. Handles sub-millisecond reranking for top-100 candidate sets.
-          </p>
-          <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-200 underline">GitHub &rarr;</a>
-            <a href="#" class="hover:text-slate-200 underline">Crates.io</a>
+          <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 pt-2 border-t border-zinc-800/60">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">GitHub &rarr;</a>
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">Documentation</a>
+          </div>
+        </div>
+
+        <!-- System 3 -->
+        <div class="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition duration-150 flex flex-col justify-between space-y-3">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-heading font-semibold text-zinc-100 text-sm sm:text-base">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+                  fast-rerank-rs
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono text-zinc-400 bg-zinc-800/90 px-2 py-0.5 rounded">Rust / ONNX</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Embedded zero-copy cross-encoder inference binary built for high-concurrency search pipelines. Sub-millisecond scoring for top-100 candidates.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 pt-2 border-t border-zinc-800/60">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">GitHub &rarr;</a>
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">Crates.io</a>
+          </div>
+        </div>
+
+        <!-- System 4 -->
+        <div class="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition duration-150 flex flex-col justify-between space-y-3">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-heading font-semibold text-zinc-100 text-sm sm:text-base">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+                  vllm-paged-sampler
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono text-zinc-400 bg-zinc-800/90 px-2 py-0.5 rounded">Triton / Python</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Experimental sampler fork integrating structured grammar masking directly inside the fused decode kernel, saving redundant CPU roundtrips.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 pt-2 border-t border-zinc-800/60">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 underline decoration-zinc-600">GitHub &rarr;</a>
+            <a href="#" class="hover:text-zinc-100 underline decoration-zinc-600">Kernel Notes</a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- WRITING / NOTES SECTION -->
-    <section id="writing" class="space-y-6 pt-4 border-t border-[#21262d]">
+    <!-- WRITING / ESSAYS SECTION -->
+    <section id="writing" class="space-y-6 pt-6 border-t border-zinc-800/80">
       <div class="flex items-baseline justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold text-slate-100 tracking-tight">
-          Writing & Technical Notes
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Thoughts</span>
+        <div>
+          <h2 class="font-heading text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+            Writing & Technical Notes
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">Deep-dives into systems engineering, kernel optimization, and papers</p>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">Articles</span>
       </div>
 
-      <div class="space-y-3 text-sm">
+      <div class="space-y-3">
         
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-          <a href="#" class="text-slate-200 hover:underline font-medium">
+        <article class="p-3.5 rounded-lg hover:bg-zinc-900/60 transition flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border border-transparent hover:border-zinc-800">
+          <a href="#" class="text-sm text-zinc-200 hover:text-accent font-medium transition">
             Understanding KV Cache Memory Fragmentation in Long-Context Serving
           </a>
-          <span class="text-xs font-mono text-slate-500 shrink-0">Aug 2024</span>
-        </div>
+          <span class="text-xs font-mono text-zinc-500 shrink-0">Aug 2024</span>
+        </article>
 
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-          <a href="#" class="text-slate-200 hover:underline font-medium">
+        <article class="p-3.5 rounded-lg hover:bg-zinc-900/60 transition flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border border-transparent hover:border-zinc-800">
+          <a href="#" class="text-sm text-zinc-200 hover:text-accent font-medium transition">
             Why LLM Agent Benchmarks Fail to Predict Production Reliability
           </a>
-          <span class="text-xs font-mono text-slate-500 shrink-0">May 2024</span>
-        </div>
+          <span class="text-xs font-mono text-zinc-500 shrink-0">May 2024</span>
+        </article>
 
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-          <a href="#" class="text-slate-200 hover:underline font-medium">
+        <article class="p-3.5 rounded-lg hover:bg-zinc-900/60 transition flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border border-transparent hover:border-zinc-800">
+          <a href="#" class="text-sm text-zinc-200 hover:text-accent font-medium transition">
             A Practical Guide to FlashAttention-2 Kernel Customization in Triton
           </a>
-          <span class="text-xs font-mono text-slate-500 shrink-0">Jan 2024</span>
-        </div>
+          <span class="text-xs font-mono text-zinc-500 shrink-0">Jan 2024</span>
+        </article>
 
       </div>
     </section>
 
     <!-- EXPERIENCE / TIMELINE -->
-    <section id="experience" class="space-y-6 pt-4 border-t border-[#21262d]">
+    <section id="experience" class="space-y-6 pt-6 border-t border-zinc-800/80">
       <div class="flex items-baseline justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold text-slate-100 tracking-tight">
-          Experience
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Timeline</span>
+        <div>
+          <h2 class="font-heading text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+            Experience & Education
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">Professional milestones and academic background</p>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">Timeline</span>
       </div>
 
       <div class="space-y-6 text-sm">
         
         <div class="space-y-1">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
-            <span class="font-medium text-slate-200">Senior AI Systems Engineer &bull; AI Research Lab</span>
-            <span class="text-xs font-mono text-slate-500">2023 &ndash; Present</span>
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <span class="font-medium text-zinc-200 font-heading">Senior AI Systems Engineer &bull; Nexus Research Labs</span>
+            <span class="text-xs font-mono text-zinc-500">2023 &ndash; Present</span>
           </div>
-          <p class="text-xs text-slate-400 font-mono">San Francisco, CA</p>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">
-            Leading the core serving architecture team. Optimized distributed inference latency for 70B+ open models across clusters of 128x H100 GPUs.
+          <p class="text-xs text-zinc-400 font-mono">San Francisco, CA</p>
+          <p class="text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+            Leading the serving optimization group. Designed continuous batching schedulers and Triton deployment manifests for 70B parameter models on clusters of 128x H100 SXM5 GPUs.
           </p>
         </div>
 
-        <div class="space-y-1 pt-4 border-t border-[#1c2128]">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
-            <span class="font-medium text-slate-200">Machine Learning Engineer &bull; Deep Tech Co.</span>
-            <span class="text-xs font-mono text-slate-500">2021 &ndash; 2023</span>
+        <div class="space-y-1 pt-4 border-t border-zinc-850">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <span class="font-medium text-zinc-200 font-heading">Machine Learning Engineer &bull; Cognitive Engine Co.</span>
+            <span class="text-xs font-mono text-zinc-500">2021 &ndash; 2023</span>
           </div>
-          <p class="text-xs text-slate-400 font-mono">Seattle, WA</p>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">
-            Built continuous training pipelines and vector retrieval backends for semantic search. Authored internal quantization tooling.
+          <p class="text-xs text-zinc-400 font-mono">Seattle, WA</p>
+          <p class="text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+            Implemented distributed vector similarity search using FAISS and Milvus. Built automated regression benchmarking suites across model checkpoint iterations.
           </p>
         </div>
 
-        <div class="space-y-1 pt-4 border-t border-[#1c2128]">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
-            <span class="font-medium text-slate-200">Graduate Research Assistant &bull; University AI Lab</span>
-            <span class="text-xs font-mono text-slate-500">2019 &ndash; 2021</span>
+        <div class="space-y-1 pt-4 border-t border-zinc-850">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <span class="font-medium text-zinc-200 font-heading">M.S. in Computer Science &bull; University of Washington</span>
+            <span class="text-xs font-mono text-zinc-500">2019 &ndash; 2021</span>
           </div>
-          <p class="text-xs text-slate-400 font-mono">Boston, MA</p>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">
-            Researched sample efficiency in model-based reinforcement learning. Co-authored 2 workshop papers.
+          <p class="text-xs text-zinc-400 font-mono">Seattle, WA</p>
+          <p class="text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+            Thesis on sample efficiency in deep reinforcement learning for continuous control. Advised by Prof. David Miller.
           </p>
         </div>
 
@@ -373,23 +468,27 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="space-y-4 pt-4 border-t border-[#21262d]">
-      <h2 class="text-lg sm:text-xl font-semibold text-slate-100 tracking-tight">
-        Contact
+    <section id="contact" class="space-y-4 pt-6 border-t border-zinc-800/80">
+      <h2 class="font-heading text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+        Contact & Collaboration
       </h2>
-      <p class="text-sm text-slate-400 leading-relaxed">
-        I am always interested in discussing research directions, collaborative engineering efforts, or system architecture challenges. 
+      <p class="text-sm text-zinc-400 leading-relaxed max-w-xl">
+        I welcome discussions around foundation model efficiency, open-source AI tooling, or potential research collaborations. 
       </p>
       
-      <div class="p-4 rounded-lg bg-[#161b22] border border-[#30363d] space-y-2 text-sm font-mono">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <span class="text-slate-300">Email: alex.doe.ai@example.com</span>
-          <button id="copy-email-btn" type="button" class="text-xs text-slate-400 hover:text-slate-100 underline text-left sm:text-right">
-            Copy to clipboard
+      <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/80 border border-zinc-800 space-y-3 text-sm font-mono">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-zinc-400">Email:</span>
+            <span class="text-zinc-200 font-medium select-all">alex.doe.ai@example.com</span>
+          </div>
+          <button id="copy-email-btn" type="button" class="touch-target px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-mono transition">
+            Copy email
           </button>
         </div>
-        <div class="text-xs text-slate-500">
-          PGP Key: <span class="text-slate-400">4A7F 90B2 3C88 D1E4 9901</span>
+        <div class="text-xs text-zinc-500 border-t border-zinc-800/80 pt-2 flex flex-wrap gap-2 justify-between">
+          <span>PGP Fingerprint: <span class="text-zinc-400">4A7F 90B2 3C88 D1E4 9901</span></span>
+          <span class="text-zinc-500">Timezone: UTC-8 (PST)</span>
         </div>
       </div>
     </section>
@@ -397,44 +496,48 @@
   </main>
 
   <!-- FOOTER (Preserving Privacy & Terms for Google OAuth / API verification) -->
-  <footer class="border-t border-[#21262d] mt-16 py-8 text-xs font-mono text-slate-500">
+  <footer class="border-t border-zinc-800/80 mt-16 py-8 text-xs font-mono text-zinc-500">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div>
         &copy; <span id="year">2026</span> Alex Doe &bull; Hosted on GitHub Pages
       </div>
-      <div class="flex items-center gap-4">
-        <a href="privacy.html" class="hover:text-slate-400 transition underline">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-slate-400 transition underline">Terms of Service</a>
-        <a href="https://github.com/aarosenn/aarosenn.github.io" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition underline">Source</a>
+      <div class="flex items-center gap-5">
+        <a href="privacy.html" class="hover:text-zinc-300 transition underline decoration-zinc-700">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-zinc-300 transition underline decoration-zinc-700">Terms of Service</a>
+        <a href="https://github.com/aarosenn/aarosenn.github.io" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition underline decoration-zinc-700">Source</a>
       </div>
     </div>
   </footer>
 
-  <!-- Minimal JavaScript: BibTeX toggle & Email Copy -->
+  <!-- Micro-Interactions (Vanilla JS) -->
   <script>
-    // Update year
+    // 1. Dynamic Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // BibTeX toggles
-    document.querySelectorAll('.bibtex-toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.classList.toggle('hidden');
+    // 2. BibTeX Collapsible Drawers
+    document.querySelectorAll('.bibtex-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          const isHidden = targetEl.classList.toggle('hidden');
+          button.textContent = isHidden ? '[BibTeX]' : '[Close BibTeX]';
         }
       });
     });
 
-    // Copy email handler
+    // 3. Accessible Copy-to-Clipboard with Status Feedback
     const copyBtn = document.getElementById('copy-email-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
         const email = 'alex.doe.ai@example.com';
         navigator.clipboard.writeText(email).then(() => {
+          const originalText = copyBtn.textContent;
           copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('bg-blue-600', 'text-white');
           setTimeout(() => {
-            copyBtn.textContent = 'Copy to clipboard';
+            copyBtn.textContent = originalText;
+            copyBtn.classList.remove('bg-blue-600', 'text-white');
           }, 2000);
         }).catch(() => {
           window.location.href = 'mailto:' + email;
